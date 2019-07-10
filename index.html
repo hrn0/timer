@@ -5,8 +5,9 @@
 <meta charset="utf-8">
 <style>
 body{
-	width:400px;
+	width:310px;
 	text-align:center;
+	margin:0 auto;
 	//margin-left:50px;
 	//margin-right:50px;
 }
@@ -31,23 +32,33 @@ body{
 	background:skyblue;
 	padding:30px;
 	border-radius:20px;
-}
-#text,#btn{
-	font-size:30px;
 	margin:50px auto;
+	font-size:30px;
+	font-weight:900;
+	color:#555;
+}
+#text{
+	font-size:50px;
+	margin:50px auto;
+	font-weight:900;
+	color:#555;
+}
+.btnon{
+	box-shadow:0 -10px 20px dodgerblue inset,
+				0 5px 10px gray;
 }
 </style>
-<meta name="viewport" content="width=device-width, initial-scale=0.85, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 </head>
 <body>
 
-<div id=text>値</div>
-<div id=btn>ボタン</div>
+<div id=text>0</div>
+<div id=btn>PUSH!</div>
 <script>
 for(let i=0;i<5;i++){
 	const tbtn = document.createElement("div");
 	tbtn.classList.add("tbtn");
-	var tbtnnum = 10;
+	var tbtnnum = 50;
 	if(i==0){
 	tbtn.textContent = "10s";
 	}else if(i==1){
@@ -72,17 +83,23 @@ for(let i=0;i<5;i++){
 	}else if(tbtn.textContent == "30m"){
 	tbtnnum = 9000;
 	}
-	text.textContent = Math.floor(tbtnnum--/5);
+	text.textContent = Math.floor(tbtnnum--/5)/60;
 	document.body.style.backgroundColor = "lightcyan";
 	})
 	
 	const btn = document.getElementById("btn");
 	btn.addEventListener("click",function(){
-  	 var countdown = function(){
-    	text.textContent = Math.floor(tbtnnum--/5);
- 	 } 
- 	 setInterval(countdown, 1000);
-      document.body.style.backgroundColor = "pink";
+		document.body.style.backgroundColor = "pink";
+		btn.classList.toggle("btnon");
+		
+     var countup = function(){
+    text.textContent = Math.floor(Math.floor(tbtnnum--/5)/60*100)/100;
+  }
+  var id = setInterval(function(){
+    countup();
+    if(tbtnnum < 5){　
+      clearInterval(id);　//idをclearIntervalで指定している
+    }}, 1000);
 })
       
 document.body.appendChild(tbtn);
