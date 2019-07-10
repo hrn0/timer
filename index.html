@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+body{
+	width:400px;
+	text-align:center;
+	//margin-left:50px;
+	//margin-right:50px;
+}
+.tbtn{
+	height:50px;
+	width:50px;
+	background:#fff;
+	border-radius:50%;
+	margin:5px;
+	font-size:20px;
+	line-height:50px;
+	text-align:center;
+	border:1px solid gray;
+	float:left;
+}
+.tbtn:hover{
+	background:lightyellow;
+}
+#btn{
+	heigth:50px;
+	width:100px;
+	background:skyblue;
+	padding:30px;
+	border-radius:20px;
+}
+#text,#btn{
+	font-size:30px;
+	margin:50px auto;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=0.85, user-scalable=no" />
+</head>
+<body>
+
+<div id=text>値</div>
+<div id=btn>ボタン</div>
+<script>
+for(let i=0;i<5;i++){
+	const tbtn = document.createElement("div");
+	tbtn.classList.add("tbtn");
+	var tbtnnum = 10;
+	if(i==0){
+	tbtn.textContent = "10s";
+	}else if(i==1){
+	tbtn.textContent = "5m";
+	}else if(i==2){
+	tbtn.textContent = "10m"
+	}else if(i==3){
+	tbtn.textContent = "20m"
+	}else if(i==4){
+	tbtn.textContent = "30m"
+	}
+	
+	tbtn.addEventListener("click",function(){
+	if(tbtn.textContent == "10s"){
+	tbtnnum = 50;
+	}else if(tbtn.textContent == "5m"){
+	tbtnnum = 1500;
+	}else if(tbtn.textContent == "10m"){
+	tbtnnum = 3000;
+	}else if(tbtn.textContent == "20m"){
+	tbtnnum = 6000;
+	}else if(tbtn.textContent == "30m"){
+	tbtnnum = 9000;
+	}
+	text.textContent = Math.floor(tbtnnum--/5);
+	document.body.style.backgroundColor = "lightcyan";
+	})
+	
+	const btn = document.getElementById("btn");
+	btn.addEventListener("click",function(){
+  	 var countdown = function(){
+    	text.textContent = Math.floor(tbtnnum--/5);
+ 	 } 
+ 	 setInterval(countdown, 1000);
+      document.body.style.backgroundColor = "pink";
+})
+      
+document.body.appendChild(tbtn);
+}
+</script>
+</body>
+</html>
+
+    
